@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Label Generator</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f0f0f0;min-height:100vh}
+nav{background:#111;color:#fff;padding:13px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.nav-tp{border:2px solid #fff;padding:2px 8px;font-weight:900;font-size:15px;border-radius:3px;letter-spacing:1px}
+.nav-brand{font-size:12px;letter-spacing:2px;color:#bbb}
+nav .sp{flex:1}
+.nav-btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;letter-spacing:.5px}
+.btn-canva{background:#7d2ae8;color:#fff}
+.btn-canva:hover{background:#6a1fd0}
+.btn-print{background:#1a6fd4;color:#fff}
+.btn-print:hover{background:#155ab0}
+.app{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 48px)}
+@media(max-width:780px){.app{grid-template-columns:1fr}}
+.sidebar{background:#fff;border-right:1px solid #e0e0e0;padding:18px;overflow-y:auto;max-height:calc(100vh - 48px)}
+.sh{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin:0 0 10px}
+.field{margin-bottom:8px}
+.field label{display:block;font-size:11px;color:#555;font-weight:600;margin-bottom:3px}
+.field input,.field select{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:5px;font-size:13px;color:#111;font-family:Arial}
+.field input:focus{border-color:#555;outline:none}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{width:100%;padding:9px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;border:none;margin-top:5px;letter-spacing:.3px}
+.b-add{background:#111;color:#fff}.b-add:hover{background:#333}
+.b-sec{background:transparent;color:#555;border:1px solid #ccc}.b-sec:hover{background:#f5f5f5}
+.b-del{background:transparent;color:#b00;border:1px solid #f0c0c0;font-size:12px;padding:7px}.b-del:hover{background:#fff5f5}
+.div{border:none;border-top:1px solid #eee;margin:14px 0}
+.csv-box{background:#f8f8f8;border:1px dashed #ccc;border-radius:7px;padding:12px;margin-bottom:10px}
+.csv-box p{font-size:11px;color:#888;margin-bottom:6px;line-height:1.5}
+.csv-box textarea{width:100%;height:72px;font-size:11px;font-family:monospace;border:1px solid #ddd;border-radius:4px;padding:5px;color:#333;resize:vertical}
+.olist{margin-top:10px}
+.oitem{background:#f9f9f9;border:1px solid #e5e5e5;border-radius:7px;padding:8px 10px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.oitem:hover,.oitem.act{border-color:#1a6fd4;background:#f0f6ff}
+.oname{font-weight:700;font-size:12px}
+.ometa{font-size:10px;color:#999;margin-top:1px}
+.odel{background:none;border:none;color:#ccc;cursor:pointer;font-size:15px;padding:2px 5px;border-radius:3px}
+.odel:hover{color:#b00;background:#fff0f0}
+.main{padding:20px;overflow-y:auto;max-height:calc(100vh - 48px)}
+.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.mhead h1{font-size:17px;font-weight:700}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(470px,1fr));gap:18px}
+@media(max-width:560px){.lgrid{grid-template-columns:1fr}}
+.lcard{background:#fff;border-radius:9px;border:1px solid #ddd;overflow:hidden}
+.lchead{padding:8px 12px;background:#f7f7f7;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+.lchead span{font-size:11px;font-weight:700;color:#666}
+.lchead-btns{display:flex;gap:6px}
+.lcbtn{font-size:11px;padding:3px 9px;border-radius:4px;cursor:pointer;background:transparent;border:1px solid #ddd;color:#555}
+.lcbtn:hover{background:#eee}
+.lcbtn-canva{border-color:#7d2ae8;color:#7d2ae8}
+.lcbtn-canva:hover{background:#f5eeff}
+.empty{text-align:center;padding:50px 20px;color:#bbb}
+.empty h2{font-size:18px;margin-bottom:6px;color:#ccc}
+.empty p{font-size:13px;line-height:1.6}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;margin-left:6px}
+.tag-free{background:#e8f5e9;color:#2e7d32}
+.tag-ent{background:#ede7f6;color:#512da8}
+.notice{background:#fff8e1;border:1px solid #ffe082;border-radius:7px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#795548;line-height:1.6}
+.notice strong{color:#4e342e}
+
+/* ---- LABEL ---- */
+.label{width:470px;height:278px;background:#fff;position:relative;overflow:hidden;font-family:Arial,sans-serif;margin:0 auto}
+.btr{position:absolute;top:-8px;right:-8px;width:165px;height:112px;background:radial-gradient(ellipse 72px 52px at 57% 27%,rgba(90,180,205,.38) 0%,transparent 67%),radial-gradient(ellipse 52px 36px at 80% 66%,rgba(70,160,190,.22) 0%,transparent 56%),radial-gradient(ellipse 26px 20px at 36% 76%,rgba(185,150,70,.26) 0%,transparent 56%);border-radius:0 8px 0 52%}
+.bbl{position:absolute;bottom:-8px;left:-8px;width:150px;height:105px;background:radial-gradient(ellipse 72px 50px at 32% 66%,rgba(90,180,205,.32) 0%,transparent 60%),radial-gradient(ellipse 46px 32px at 66% 27%,rgba(70,160,190,.18) 0%,transparent 50%),radial-gradient(ellipse 30px 22px at 17% 27%,rgba(185,150,70,.2) 0%,transparent 50%);border-radius:52% 0 8px 8px}
+.li{position:relative;z-index:2;padding:11px 15px 7px;height:100%;display:flex;flex-direction:column}
+.lh{text-align:center;margin-bottom:3px}
+.tpw{display:inline-flex;align-items:center;gap:4px;border:2px solid #111;padding:2px 6px;border-radius:3px;margin-bottom:2px}
+.tpl{display:flex;flex-direction:column;gap:2px}
+.tpl i{display:block;height:2px;background:#111;border-radius:1px}
+.tpp{font-size:16px;font-weight:900;color:#111;line-height:1}
+.tps{font-size:6.5px;letter-spacing:1.5px;color:#999;display:block}
+.lty{font-size:24px;font-weight:900;letter-spacing:6px;color:#2a2a2a;line-height:1.1}
+.lfp{font-size:9px;letter-spacing:3px;color:#777;margin-top:1px}
+.gl{height:1px;background:linear-gradient(90deg,transparent 0%,#c9a84c 30%,#c9a84c 70%,transparent 100%);margin:4px 0}
+.lb{display:grid;grid-template-columns:150px 1fr 122px;gap:3px;flex:1;align-items:start}
+.fs{font-size:9px;padding-top:2px}
+.fr{display:flex;align-items:baseline;gap:2px;margin-bottom:4px}
+.fk{color:#aaa;min-width:42px;font-size:9px}
+.fc{color:#aaa}
+.fv{font-weight:700;font-size:9.5px;color:#111;border-bottom:1px solid #333;min-width:82px;max-width:82px;padding-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block}
+.fo{text-align:left;font-size:8.5px;padding-top:2px}
+.fot{font-weight:900;font-size:10px;letter-spacing:2px;color:#111;margin-bottom:4px;text-align:center}
+.for{display:flex;align-items:center;gap:4px;margin-bottom:3px;font-size:8.5px;color:#333}
+.foi{width:11px;height:11px;border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6.5px;color:#fff;font-weight:700}
+.fp{text-align:center;padding-top:2px}
+.jp{display:flex;gap:3px;justify-content:center;margin-bottom:3px}
+.jb{width:46px;height:52px;background:#1a4fd4;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:6px;color:#fff;font-weight:700;text-align:center;padding:2px;line-height:1.3}
+.pn{font-weight:700;font-size:9px;color:#111}
+.ps{font-style:italic;font-size:8px;color:#777}
+.lf{text-align:center;font-size:7.5px;color:#999;margin-top:4px;border-top:.5px solid #ebebeb;padding-top:3px}
+
+@media print{
+  nav,.sidebar,.mhead,.lchead{display:none!important}
+  body{background:#fff}
+  .app{display:block}
+  .main{padding:0;max-height:none;overflow:visible}
+  .lgrid{display:block}
+  .lcard{border:none;border-radius:0;page-break-after:always;margin:0;padding:8mm}
+  .label{width:148mm;height:105mm;margin:0 auto}
+  .lty{font-size:20px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-tp">TP</div>
+  <span class="nav-brand">LABEL GENERATOR</span>
+  <div class="sp"></div>
+  <span id="nav-ct" style="font-size:12px;color:#aaa;margin-right:10px">0 labels</span>
+  <button class="nav-btn btn-canva" onclick="openCanvaTemplate()">Open in Canva</button>
+  <button class="nav-btn btn-print" onclick="window.print()">Print all</button>
+</nav>
+
+<div class="app">
+<div class="sidebar">
+  <p class="sh">Add order</p>
+  <div class="field"><label>Customer name</label><input id="fn" type="text" placeholder="Brandon Dove"></div>
+  <div class="field"><label>Street address</label><input id="fa" type="text" placeholder="149 Windsorwood Court Gadsden"></div>
+  <div class="r2">
+    <div class="field"><label>City</label><input id="fc" type="text" placeholder="Gadsden"></div>
+    <div class="field"><label>State</label><input id="fs" type="text" placeholder="SC"></div>
+  </div>
+  <div class="field"><label>ZIP code</label><input id="fz" type="text" placeholder="29052"></div>
+  <div class="r2">
+    <div class="field"><label>Item</label><input id="fi" type="text" placeholder="Bowling Jersey"></div>
+    <div class="field"><label>Size</label><input id="fsi" type="text" placeholder="V-Neck 4XL"></div>
+  </div>
+  <button class="btn b-add" onclick="addOrder()">+ Add label</button>
+
+  <div class="div"></div>
+  <p class="sh">Bulk CSV import</p>
+  <div class="csv-box">
+    <p>Paste from spreadsheet — one row per order:<br><strong>Name, Address, City, State, ZIP, Item, Size</strong></p>
+    <textarea id="csv" placeholder="Brandon Dove, 149 Windsorwood Ct, Gadsden, SC, 29052, Bowling Jersey, V-Neck 4XL&#10;Jane Smith, 55 Oak Lane, Columbia, SC, 29201, Custom Jersey, Women M"></textarea>
+    <button class="btn b-sec" style="margin-top:5px" onclick="importCSV()">Import rows</button>
+  </div>
+
+  <div class="div"></div>
+  <p class="sh">Actions</p>
+  <button class="btn b-sec" onclick="openCanvaTemplate()" style="background:#f5eeff;color:#7d2ae8;border-color:#c9a0f0">Open Canva template</button>
+  <button class="btn b-del" onclick="clearAll()" style="margin-top:6px">Clear all labels</button>
+
+  <div class="div"></div>
+  <p class="sh">Orders (<span id="oc">0</span>)</p>
+  <div class="olist" id="olist"></div>
+</div>
+
+<div class="main">
+  <div class="mhead">
+    <h1>Label preview</h1>
+    <div style="display:flex;gap:8px">
+      <button class="nav-btn btn-canva" style="border-radius:6px;font-size:12px" onclick="openCanvaTemplate()">Open in Canva</button>
+      <button class="nav-btn btn-print" style="border-radius:6px;font-size:12px" onclick="window.print()">Print all</button>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>How to use with Canva:</strong> Generate your labels here for a quick print preview. Click <strong>"Open in Canva"</strong> to jump straight to your template and manually update the fields — or upgrade to Canva Enterprise to enable full API autofill that pushes all data automatically.
+  </div>
+
+  <div id="lgrid" class="lgrid">
+    <div class="empty">
+      <h2>No labels yet</h2>
+      <p>Fill in the form on the left and click <strong>Add label</strong>,<br>or paste CSV rows to import multiple orders at once.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const CANVA_URL = 'https://www.canva.com/design/DAHBDPR9Xlc/nI7N6bG28XZXt75XaY40CQ/edit';
+let orders = JSON.parse(localStorage.getItem('tp_orders')||'[]');
+
+function save(){localStorage.setItem('tp_orders',JSON.stringify(orders))}
+function gv(id){return document.getElementById(id).value.trim()}
+
+function openCanvaTemplate(){window.open(CANVA_URL,'_blank')}
+
+function labelHTML(o,i){
+  return `<div class="lcard" id="card-${i}">
+    <div class="lchead">
+      <span>#${i+1} — ${o.name||'Unnamed'}</span>
+      <div class="lchead-btns">
+        <button class="lcbtn lcbtn-canva" onclick="openCanvaTemplate()">Open in Canva</button>
+        <button class="lcbtn" onclick="removeOrder(${i})">Remove</button>
+      </div>
+    </div>
+    <div class="label">
+      <div class="btr"></div><div class="bbl"></div>
+      <div class="li">
+        <div class="lh">
+          <div style="display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:2px">
+            <div class="tpw"><div class="tpl"><i style="width:14px"></i><i style="width:8px"></i></div><div class="tpp">P</div></div>
+          </div>
+          <span class="tps">Total Package</span>
+          <div class="lty">THANK YOU</div>
+          <div class="lfp">FOR YOUR PURCHASE</div>
+        </div>
+        <div class="gl"></div>
+        <div class="lb">
+          <div class="fs">
+            <div class="fr"><span class="fk">Name</span><span class="fc">:</span><span class="fv">${o.name||'&nbsp;'}</span></div>
+            <div class="fr"><span class="fk">City</span><span class="fc">:</span><span class="fv">${o.city||'&nbsp;'}</span></div>
+            <div class="fr"><span class="fk">State</span><span class="fc">:</span><span class="fv">${o.state||'&nbsp;'}</span></div>
+            <div class="fr"><span class="fk">Address</span><span class="fc">:</span><span class="fv">${o.addr||'&nbsp;'}</span></div>
+            <div class="fr"><span class="fk">Zip Code</span><span class="fc">:</span><span class="fv">${o.zip||'&nbsp;'}</span></div>
+          </div>
+          <div class="fo">
+            <div class="fot">FOLLOW US</div>
+            <div class="for"><div class="foi" style="background:#1877f2">f</div>@totalpackage</div>
+            <div class="for"><div class="foi" style="background:#888;border-radius:50%"></div>+1 (803) 619-0496</div>
+            <div class="for"><div class="foi" style="background:#e34234">@</div>orders@tp-llc.com</div>
+            <div class="for"><div class="foi" style="background:#4285f4;border-radius:50%">w</div>tp-llc.com</div>
+          </div>
+          <div class="fp">
+            <div class="jp"><div class="jb">JERSEY<br>FRONT</div><div class="jb">JERSEY<br>BACK</div></div>
+            <div class="pn">${o.item||'Bowling Jersey'}</div>
+            <div class="ps">${o.size||''}</div>
+          </div>
+        </div>
+        <div class="lf">We would love to hear your feedback &nbsp;&bull;&nbsp; Leave a review &nbsp;@total_packagetp</div>
+      </div>
+    </div>
+  </div>`
+}
+
+function renderAll(){
+  const n=orders.length;
+  document.getElementById('oc').textContent=n;
+  document.getElementById('nav-ct').textContent=n+' label'+(n!==1?'s':'');
+  document.getElementById('lgrid').innerHTML=n===0
+    ?'<div class="empty"><h2>No labels yet</h2><p>Fill in the form on the left and click <strong>Add label</strong>,<br>or paste CSV rows to import multiple orders at once.</p></div>'
+    :orders.map((o,i)=>labelHTML(o,i)).join('');
+  document.getElementById('olist').innerHTML=orders.map((o,i)=>`
+    <div class="oitem" onclick="jump(${i})">
+      <div><div class="oname">${o.name||'Unnamed'}</div><div class="ometa">${[o.city,o.state,o.zip].filter(Boolean).join(', ')} · ${o.item||''}</div></div>
+      <button class="odel" onclick="event.stopPropagation();removeOrder(${i})">×</button>
+    </div>`).join('');
+}
+
+function addOrder(){
+  const o={name:gv('fn'),addr:gv('fa'),city:gv('fc'),state:gv('fs'),zip:gv('fz'),item:gv('fi'),size:gv('fsi')};
+  if(!o.name&&!o.addr)return;
+  orders.push(o); save(); renderAll();
+  ['fn','fa','fc','fs','fz','fi','fsi'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fn').focus();
+  setTimeout(()=>document.getElementById('card-'+(orders.length-1))?.scrollIntoView({behavior:'smooth',block:'center'}),100);
+}
+
+function removeOrder(i){orders.splice(i,1);save();renderAll()}
+function clearAll(){if(orders.length&&confirm('Remove all '+orders.length+' labels?')){orders=[];save();renderAll()}}
+function jump(i){document.getElementById('card-'+i)?.scrollIntoView({behavior:'smooth',block:'center'})}
+
+function importCSV(){
+  const raw=document.getElementById('csv').value.trim();
+  if(!raw)return;
+  let added=0;
+  raw.split('\n').filter(l=>l.trim()).forEach(line=>{
+    const p=line.split(',').map(s=>s.trim());
+    if(p[0]){orders.push({name:p[0]||'',addr:p[1]||'',city:p[2]||'',state:p[3]||'',zip:p[4]||'',item:p[5]||'Bowling Jersey',size:p[6]||''});added++}
+  });
+  if(added){document.getElementById('csv').value='';save();renderAll()}
+  alert(added+' label'+(added!==1?'s':'')+' imported!');
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.activeElement.closest('.sidebar'))addOrder()
+});
+
+renderAll();
+</script>
+</body>
+</html>
