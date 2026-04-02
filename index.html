@@ -8,8 +8,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f0f0f0;min-height:100vh}
 nav{background:#111;color:#fff;padding:13px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
-.nav-tp{display:flex;align-items:center;gap:6px}.nav-tp svg{display:block}
-.nav-brand{font-size:12px;letter-spacing:2px;color:#bbb}
+.nav-logo{display:flex;align-items:center;gap:8px}
+.nav-brand{display:flex;flex-direction:column;line-height:1.2}
+.nav-brand span:first-child{font-size:11px;font-weight:700;letter-spacing:1px;color:#fff}
+.nav-brand span:last-child{font-size:9px;color:#aaa;letter-spacing:.5px}
 nav .sp{flex:1}
 .nav-btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;letter-spacing:.5px}
 .btn-canva{background:#7d2ae8;color:#fff}.btn-canva:hover{background:#6a1fd0}
@@ -28,8 +30,6 @@ nav .sp{flex:1}
 .b-sec{background:transparent;color:#555;border:1px solid #ccc}.b-sec:hover{background:#f5f5f5}
 .b-del{background:transparent;color:#b00;border:1px solid #f0c0c0;font-size:12px;padding:7px}.b-del:hover{background:#fff5f5}
 .div{border:none;border-top:1px solid #eee;margin:14px 0}
-
-/* Address parser box */
 .parse-box{background:#f0f7ff;border:1px solid #c0d8f5;border-radius:8px;padding:12px;margin-bottom:12px}
 .parse-box .plabel{display:block;font-size:11px;font-weight:700;color:#1a6fd4;margin-bottom:5px;letter-spacing:.5px}
 .parse-row{display:flex;gap:6px}
@@ -41,16 +41,13 @@ nav .sp{flex:1}
 .sep{display:flex;align-items:center;gap:8px;margin:10px 0 8px}
 .sep-line{flex:1;border-top:1px dashed #e0e0e0}
 .sep span{font-size:10px;color:#bbb;white-space:nowrap}
-
-/* Image upload */
-.img-upload{border:1.5px dashed #ddd;border-radius:7px;padding:10px;text-align:center;cursor:pointer;margin-bottom:8px;transition:border-color .2s}
+.img-upload{border:1.5px dashed #ddd;border-radius:7px;padding:10px;text-align:center;cursor:pointer;margin-bottom:8px}
 .img-upload:hover{border-color:#888}
 .img-upload input{display:none}
 .img-upload .img-preview{width:100%;max-height:80px;object-fit:contain;border-radius:4px;display:none}
 .img-upload .img-placeholder{font-size:11px;color:#aaa}
 .img-upload .img-placeholder span{display:block;font-size:20px;margin-bottom:2px}
 .img-clear{font-size:11px;color:#b00;background:none;border:none;cursor:pointer;margin-top:4px;display:none}
-
 .csv-box{background:#f8f8f8;border:1px dashed #ccc;border-radius:7px;padding:12px;margin-bottom:10px}
 .csv-box p{font-size:11px;color:#888;margin-bottom:6px;line-height:1.5}
 .csv-box textarea{width:100%;height:72px;font-size:11px;font-family:monospace;border:1px solid #ddd;border-radius:4px;padding:5px;color:#333;resize:vertical}
@@ -77,18 +74,11 @@ nav .sp{flex:1}
 .empty h2{font-size:18px;margin-bottom:6px;color:#ccc}
 .empty p{font-size:13px;line-height:1.6}
 .notice{background:#fff8e1;border:1px solid #ffe082;border-radius:7px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:#795548;line-height:1.6}
-
-/* ---- LABEL ---- */
 .label{width:470px;height:278px;background:#fff;position:relative;overflow:hidden;font-family:Arial,sans-serif;margin:0 auto}
 .btr{position:absolute;top:-8px;right:-8px;width:165px;height:112px;background:radial-gradient(ellipse 72px 52px at 57% 27%,rgba(90,180,205,.38) 0%,transparent 67%),radial-gradient(ellipse 52px 36px at 80% 66%,rgba(70,160,190,.22) 0%,transparent 56%),radial-gradient(ellipse 26px 20px at 36% 76%,rgba(185,150,70,.26) 0%,transparent 56%);border-radius:0 8px 0 52%}
 .bbl{position:absolute;bottom:-8px;left:-8px;width:150px;height:105px;background:radial-gradient(ellipse 72px 50px at 32% 66%,rgba(90,180,205,.32) 0%,transparent 60%),radial-gradient(ellipse 46px 32px at 66% 27%,rgba(70,160,190,.18) 0%,transparent 50%),radial-gradient(ellipse 30px 22px at 17% 27%,rgba(185,150,70,.2) 0%,transparent 50%);border-radius:52% 0 8px 8px}
 .li{position:relative;z-index:2;padding:11px 15px 7px;height:100%;display:flex;flex-direction:column}
 .lh{text-align:center;margin-bottom:3px}
-.tpw{display:inline-flex;align-items:center;gap:4px;border:2px solid #111;padding:2px 6px;border-radius:3px;margin-bottom:2px}
-.tpl{display:flex;flex-direction:column;gap:2px}
-.tpl i{display:block;height:2px;background:#111;border-radius:1px}
-.tpp{font-size:16px;font-weight:900;color:#111;line-height:1}
-.tps{font-size:6.5px;letter-spacing:1.5px;color:#999;display:block}
 .lty{font-size:24px;font-weight:900;letter-spacing:6px;color:#2a2a2a;line-height:1.1}
 .lfp{font-size:9px;letter-spacing:3px;color:#777;margin-top:1px}
 .gl{height:1px;background:linear-gradient(90deg,transparent 0%,#c9a84c 30%,#c9a84c 70%,transparent 100%);margin:4px 0}
@@ -108,7 +98,6 @@ nav .sp{flex:1}
 .pn{font-weight:700;font-size:9px;color:#111}
 .ps{font-style:italic;font-size:8px;color:#777}
 .lf{text-align:center;font-size:7.5px;color:#999;margin-top:4px;border-top:.5px solid #ebebeb;padding-top:3px}
-
 @media print{
   nav,.sidebar,.mhead,.lchead,.notice{display:none!important}
   body{background:#fff}
@@ -123,19 +112,18 @@ nav .sp{flex:1}
 </head>
 <body>
 <nav>
-  <div class="nav-tp">
-    <svg width="28" height="17" viewBox="0 0 38 22" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="18" height="3" rx="1" fill="#fff"/>
-      <rect x="7" y="3" width="4" height="14" rx="1" fill="#fff"/>
-      <rect x="16" y="0" width="4" height="19" rx="1" fill="#fff"/>
-      <path d="M20 0 Q32 0 32 7 Q32 14 20 14" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <div class="nav-logo">
+    <svg width="34" height="22" viewBox="0 0 52 34" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="30" height="5" rx="2" fill="#fff"/>
+      <rect x="13" y="0" width="5" height="30" rx="2" fill="#fff"/>
+      <rect x="34" y="0" width="5" height="34" rx="2" fill="#fff"/>
+      <path d="M39 1 Q52 1 52 11 Q52 21 39 21" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <div style="display:flex;flex-direction:column;line-height:1.2">
-      <span style="font-size:11px;font-weight:700;letter-spacing:1px;color:#fff">TOTAL PACKAGE</span>
-      <span style="font-size:9px;color:#aaa;letter-spacing:.5px">tp-llc.com</span>
+    <div class="nav-brand">
+      <span>TOTAL PACKAGE</span>
+      <span>tp-llc.com</span>
     </div>
   </div>
-  <span class="nav-brand">LABEL GENERATOR</span>
   <div class="sp"></div>
   <span id="nav-ct" style="font-size:12px;color:#aaa;margin-right:10px">0 labels</span>
   <button class="nav-btn btn-canva" onclick="openCanva()">Open in Canva</button>
@@ -145,8 +133,6 @@ nav .sp{flex:1}
 <div class="app">
 <div class="sidebar">
   <p class="sh">Add order</p>
-
-  <!-- PASTE FULL ADDRESS (hidden on print) -->
   <div class="parse-box">
     <span class="plabel">PASTE FULL ADDRESS — auto-fills fields below</span>
     <div class="parse-row">
@@ -155,9 +141,7 @@ nav .sp{flex:1}
     </div>
     <div id="pstatus" class="parse-status"></div>
   </div>
-
   <div class="sep"><div class="sep-line"></div><span>or fill in manually</span><div class="sep-line"></div></div>
-
   <div class="field"><label>Customer name</label><input id="fn" type="text" placeholder="Brandon Dove"></div>
   <div class="field"><label>Street address</label><input id="fa" type="text" placeholder="149 Windsorwood Court"></div>
   <div class="r2">
@@ -169,22 +153,16 @@ nav .sp{flex:1}
     <div class="field"><label>Item name</label><input id="fi" type="text" placeholder="Bowling Jersey"></div>
     <div class="field"><label>Size / style</label><input id="fsi" type="text" placeholder="V-Neck 4XL"></div>
   </div>
-
-  <!-- SINGLE JERSEY IMAGE UPLOAD -->
   <div class="field">
     <label>Jersey image (shows on label)</label>
     <div class="img-upload" id="imgUpload" onclick="document.getElementById('imgInput').click()">
       <input type="file" id="imgInput" accept="image/*" onchange="loadImg(event)">
       <img id="imgPreview" class="img-preview" alt="Jersey">
-      <div class="img-placeholder" id="imgPlaceholder">
-        <span>+</span>Click to upload jersey photo
-      </div>
+      <div class="img-placeholder" id="imgPlaceholder"><span>+</span>Click to upload jersey photo</div>
     </div>
     <button class="img-clear" id="imgClear" onclick="clearImg()">Remove image</button>
   </div>
-
   <button class="btn b-add" onclick="addOrder()">+ Add label</button>
-
   <div class="div"></div>
   <p class="sh">Bulk CSV import</p>
   <div class="csv-box">
@@ -192,12 +170,10 @@ nav .sp{flex:1}
     <textarea id="csv" placeholder="Brandon Dove, 149 Windsorwood Ct, Gadsden, SC, 29052, Bowling Jersey, V-Neck 4XL"></textarea>
     <button class="btn b-sec" style="margin-top:5px" onclick="importCSV()">Import rows</button>
   </div>
-
   <div class="div"></div>
   <p class="sh">Actions</p>
   <button class="btn b-sec" onclick="openCanva()" style="background:#f5eeff;color:#7d2ae8;border-color:#c9a0f0">Open Canva template</button>
   <button class="btn b-del" onclick="clearAll()" style="margin-top:6px">Clear all labels</button>
-
   <div class="div"></div>
   <p class="sh">Orders (<span id="oc">0</span>)</p>
   <div class="olist" id="olist"></div>
@@ -211,9 +187,9 @@ nav .sp{flex:1}
       <button class="nav-btn btn-print" style="border-radius:6px;font-size:12px" onclick="window.print()">Print all</button>
     </div>
   </div>
-  <div class="notice"><strong>Tip:</strong> Paste a full address in the blue box to auto-fill all address fields instantly. The paste box won't appear on printed labels.</div>
+  <div class="notice"><strong>Tip:</strong> Paste a full address in the blue box to auto-fill all fields instantly. The paste box is hidden on printed labels.</div>
   <div id="lgrid" class="lgrid">
-    <div class="empty"><h2>No labels yet</h2><p>Paste a full address to auto-fill,<br>then click <strong>Add label</strong> to generate a preview.</p></div>
+    <div class="empty"><h2>No labels yet</h2><p>Paste a full address to auto-fill,<br>then click <strong>Add label</strong>.</p></div>
   </div>
 </div>
 </div>
@@ -224,7 +200,14 @@ let orders=JSON.parse(localStorage.getItem('tp_orders')||'[]');
 let currentImg=localStorage.getItem('tp_img')||'';
 const STATES=['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
 
-// Restore saved image on load
+// TP logo SVG — dark (for label)
+const TP_LOGO=`<svg width="38" height="26" viewBox="0 0 52 34" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="30" height="5" rx="2" fill="#111"/>
+  <rect x="13" y="0" width="5" height="30" rx="2" fill="#111"/>
+  <rect x="34" y="0" width="5" height="34" rx="2" fill="#111"/>
+  <path d="M39 1 Q52 1 52 11 Q52 21 39 21" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
 window.addEventListener('DOMContentLoaded',()=>{
   if(currentImg){
     document.getElementById('imgPreview').src=currentImg;
@@ -281,7 +264,7 @@ function parseAddr(){
   let streetP,cityP;
   if(sfx>=0){streetP=parts.slice(0,sfx+1);cityP=parts.slice(sfx+1);}
   else{streetP=parts.slice(0,Math.max(1,parts.length-1));cityP=parts.slice(-1);}
-  const street=streetP.join(' '), city=cityP.join(' ');
+  const street=streetP.join(' '),city=cityP.join(' ');
   if(street)document.getElementById('fa').value=street;
   if(city)document.getElementById('fci').value=city;
   if(state)document.getElementById('fst').value=state;
@@ -295,13 +278,11 @@ function save(){localStorage.setItem('tp_orders',JSON.stringify(orders));}
 function gv(id){return document.getElementById(id).value.trim();}
 function openCanva(){window.open(CANVA,'_blank');}
 
-function productHTML(o){
-  if(currentImg)return`<img class="jersey-img" src="${currentImg}" alt="Jersey">`;
-  return`<div class="jersey-placeholder">JERSEY<br>IMAGE</div>`;
-}
-
 function labelHTML(o,i){
-  return`<div class="lcard" id="card-${i}">
+  const imgHTML=currentImg
+    ?`<img class="jersey-img" src="${currentImg}" alt="Jersey">`
+    :`<div class="jersey-placeholder">JERSEY IMAGE</div>`;
+  return `<div class="lcard" id="card-${i}">
     <div class="lchead">
       <span>#${i+1} — ${o.name||'Unnamed'}</span>
       <div class="lchead-btns">
@@ -313,20 +294,13 @@ function labelHTML(o,i){
       <div class="btr"></div><div class="bbl"></div>
       <div class="li">
         <div class="lh">
-          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1px">
-            <svg width="38" height="22" viewBox="0 0 38 22" xmlns="http://www.w3.org/2000/svg">
-              <!-- T bar -->
-              <rect x="0" y="0" width="18" height="3" rx="1" fill="#111"/>
-              <!-- T stem -->
-              <rect x="7" y="3" width="4" height="14" rx="1" fill="#111"/>
-              <!-- P vertical stem -->
-              <rect x="16" y="0" width="4" height="19" rx="1" fill="#111"/>
-              <!-- P top bump -->
-              <path d="M20 0 Q32 0 32 7 Q32 14 20 14" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            </svg>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:2px">
+            ${TP_LOGO}
+            <div style="text-align:left;line-height:1.3">
+              <div style="font-size:7px;font-weight:700;letter-spacing:1px;color:#333">Total Package</div>
+              <div style="font-size:6px;color:#999;letter-spacing:.3px">tp-llc.com</div>
+            </div>
           </div>
-          <div style="font-size:6px;letter-spacing:1.5px;color:#555;font-weight:700;margin-bottom:1px">TOTAL PACKAGE</div>
-          <div style="font-size:5.5px;letter-spacing:1px;color:#999;margin-bottom:3px">tp-llc.com</div>
           <div class="lty">THANK YOU</div>
           <div class="lfp">FOR YOUR PURCHASE</div>
         </div>
@@ -347,7 +321,7 @@ function labelHTML(o,i){
             <div class="for"><div class="foi" style="background:#4285f4;border-radius:50%">w</div>tp-llc.com</div>
           </div>
           <div class="fp">
-            ${productHTML(o)}
+            ${imgHTML}
             <div class="pn">${o.item||'Bowling Jersey'}</div>
             <div class="ps">${o.size||''}</div>
           </div>
@@ -355,8 +329,7 @@ function labelHTML(o,i){
         <div class="lf">We would love to hear your feedback &nbsp;&bull;&nbsp; Leave a review &nbsp;@total_packagetp</div>
       </div>
     </div>
-  </div>`;
-}
+  </div>`;}
 
 function renderAll(){
   const n=orders.length;
@@ -369,8 +342,7 @@ function renderAll(){
     <div class="oitem" onclick="jump(${i})">
       <div><div class="oname">${o.name||'Unnamed'}</div><div class="ometa">${[o.city,o.state,o.zip].filter(Boolean).join(', ')} &middot; ${o.item||''}</div></div>
       <button class="odel" onclick="event.stopPropagation();removeOrder(${i})">&#215;</button>
-    </div>`).join('');
-}
+    </div>`).join('');}
 
 function addOrder(){
   const o={name:gv('fn'),addr:gv('fa'),city:gv('fci'),state:gv('fst'),zip:gv('fz'),item:gv('fi'),size:gv('fsi')};
@@ -380,8 +352,7 @@ function addOrder(){
   document.getElementById('fparse').value='';
   document.getElementById('pstatus').textContent='';
   document.getElementById('fn').focus();
-  setTimeout(()=>document.getElementById('card-'+(orders.length-1))?.scrollIntoView({behavior:'smooth',block:'center'}),100);
-}
+  setTimeout(()=>document.getElementById('card-'+(orders.length-1))?.scrollIntoView({behavior:'smooth',block:'center'}),100);}
 
 function removeOrder(i){orders.splice(i,1);save();renderAll();}
 function clearAll(){if(orders.length&&confirm('Remove all '+orders.length+' labels?')){orders=[];save();renderAll();}}
@@ -396,12 +367,10 @@ function importCSV(){
     if(p[0]){orders.push({name:p[0],addr:p[1]||'',city:p[2]||'',state:p[3]||'',zip:p[4]||'',item:p[5]||'Bowling Jersey',size:p[6]||''});added++;}
   });
   if(added){document.getElementById('csv').value='';save();renderAll();}
-  alert(added+' label'+(added!==1?'s':'')+' imported!');
-}
+  alert(added+' label'+(added!==1?'s':'')+' imported!');}
 
 document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&document.activeElement.closest('.sidebar'))addOrder();
-});
+  if(e.key==='Enter'&&document.activeElement.closest('.sidebar'))addOrder();});
 </script>
 </body>
 </html>
