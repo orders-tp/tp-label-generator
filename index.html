@@ -8,7 +8,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f0f0f0;min-height:100vh}
 nav{background:#111;color:#fff;padding:13px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
-.nav-tp{border:2px solid #fff;padding:2px 8px;font-weight:900;font-size:15px;border-radius:3px;letter-spacing:1px}
+.nav-tp{display:flex;align-items:center;gap:6px}.nav-tp svg{display:block}
 .nav-brand{font-size:12px;letter-spacing:2px;color:#bbb}
 nav .sp{flex:1}
 .nav-btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;letter-spacing:.5px}
@@ -123,7 +123,18 @@ nav .sp{flex:1}
 </head>
 <body>
 <nav>
-  <div class="nav-tp">TP</div>
+  <div class="nav-tp">
+    <svg width="28" height="17" viewBox="0 0 38 22" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="18" height="3" rx="1" fill="#fff"/>
+      <rect x="7" y="3" width="4" height="14" rx="1" fill="#fff"/>
+      <rect x="16" y="0" width="4" height="19" rx="1" fill="#fff"/>
+      <path d="M20 0 Q32 0 32 7 Q32 14 20 14" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div style="display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:11px;font-weight:700;letter-spacing:1px;color:#fff">TOTAL PACKAGE</span>
+      <span style="font-size:9px;color:#aaa;letter-spacing:.5px">tp-llc.com</span>
+    </div>
+  </div>
   <span class="nav-brand">LABEL GENERATOR</span>
   <div class="sp"></div>
   <span id="nav-ct" style="font-size:12px;color:#aaa;margin-right:10px">0 labels</span>
@@ -302,10 +313,20 @@ function labelHTML(o,i){
       <div class="btr"></div><div class="bbl"></div>
       <div class="li">
         <div class="lh">
-          <div style="display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:2px">
-            <div class="tpw"><div class="tpl"><i style="width:14px"></i><i style="width:8px"></i></div><div class="tpp">P</div></div>
+          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:1px">
+            <svg width="38" height="22" viewBox="0 0 38 22" xmlns="http://www.w3.org/2000/svg">
+              <!-- T bar -->
+              <rect x="0" y="0" width="18" height="3" rx="1" fill="#111"/>
+              <!-- T stem -->
+              <rect x="7" y="3" width="4" height="14" rx="1" fill="#111"/>
+              <!-- P vertical stem -->
+              <rect x="16" y="0" width="4" height="19" rx="1" fill="#111"/>
+              <!-- P top bump -->
+              <path d="M20 0 Q32 0 32 7 Q32 14 20 14" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            </svg>
           </div>
-          <span class="tps">Total Package</span>
+          <div style="font-size:6px;letter-spacing:1.5px;color:#555;font-weight:700;margin-bottom:1px">TOTAL PACKAGE</div>
+          <div style="font-size:5.5px;letter-spacing:1px;color:#999;margin-bottom:3px">tp-llc.com</div>
           <div class="lty">THANK YOU</div>
           <div class="lfp">FOR YOUR PURCHASE</div>
         </div>
